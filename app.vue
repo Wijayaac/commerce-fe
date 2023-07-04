@@ -2,6 +2,8 @@
   <div>
     <Header />
     <NuxtLoadingIndicator />
-    <NuxtPage />
+    <div class="container">
+      <NuxtPage />
+    </div>
   </div>
 </template>

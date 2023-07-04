@@ -1,17 +1,6 @@
 <template>
   <div class="container">
-    <div class="main-product row">
-      <div class="col-12 col-md-6">
-        <div class="main-product-image">
-          <!-- <img :src="product.image" :alt="product.title" class="img-fluid" /> -->
-        </div>
-      </div>
-      <div class="main-product-content col-12 col-md-6">
-        <h1>{{ product.name }}</h1>
-        <p>{{ product.price }}</p>
-        <p>{{ product.description }}</p>
-      </div>
-    </div>
+    <MainProduct :product="product" />
   </div>
 </template>
 <script setup>
