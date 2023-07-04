@@ -13,7 +13,7 @@ interface Product {
   // image_path?: string;
   price?: string;
 }
-defineProps<{
+const props = defineProps<{
   products: Product[];
 }>();
 </script>

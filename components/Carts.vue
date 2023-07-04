@@ -1,6 +1,6 @@
 <template>
   <div class="cart-items">
-    <ul class="d-flex">
+    <ul class="d-flex" v-if="carts.length">
       <CartItem v-for="cart in carts" :key="cart.id" :cart="cart" />
     </ul>
   </div>

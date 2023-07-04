@@ -18,15 +18,18 @@ const props = defineProps<{
   };
 }>();
 
+const product = ref({});
+const user = ref({});
+
 const client = useSupabaseClient();
-const { data: product } = await useAsyncData("product", async () => {
+await useAsyncData("product", async () => {
   const { data } = await client.from("products").select("*").eq("id", props.cart.product_id).single();
-  return data;
+  product.value = data || {};
 });
 
-const { data: user } = await useAsyncData("user", async () => {
+await useAsyncData("user", async () => {
   const { data } = await client.from("users").select("*").eq("id", props.cart.user_id).single();
-  return data;
+  user.value = data || {};
 });
 </script>
 
