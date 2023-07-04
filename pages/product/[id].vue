@@ -16,10 +16,6 @@
 </template>
 <script setup>
 const route = useRoute();
-const config = useRuntimeConfig();
-
-// const { data: product, pending, error } = await useAsyncData("product", () => $fetch(`${config.public.apiBase}/products/${route.params.id}`));
-
 const client = useSupabaseClient();
 
 const { data: product } = await useAsyncData("product", async () => {
