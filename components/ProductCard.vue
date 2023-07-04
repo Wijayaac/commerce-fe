@@ -2,33 +2,26 @@
   <div class="col-12 col-md-3 mb-4">
     <div class="card card--product">
       <div class="card-image">
-        <img :src="product?.image" :alt="product?.title" />
+        <!-- <img :src="product?.image_path" :alt="product?.name" /> -->
       </div>
-      <nuxt-link :to="'/product/' + product?.id">{{ product?.title }}</nuxt-link>
+      <nuxt-link :to="'/product/' + product?.id">{{ product?.name }}</nuxt-link>
       <p>{{ product?.price }}</p>
-      <div class="rating">
-        <span>Review : {{ product?.rating?.rate }}, </span>
-        <span>Total : {{ product?.rating?.count }}</span>
-      </div>
     </div>
   </div>
 </template>
 <script setup lang="ts">
 interface Product {
   id?: number;
-  title?: string;
-  image?: string;
+  name?: string;
+  category_id?: number;
+  // image_path?: string;
   price?: string;
-  rating?: {
-    rate?: number;
-    count?: number;
-  };
 }
 
 const props = defineProps<{
   product: Product;
 }>();
-const slug = computed(() => props.product?.title?.replace(/\//g, "").replace(/\s+/g, "-").toLowerCase());
+const slug = computed(() => props.product?.name?.replace(/\//g, "").replace(/\s+/g, "-").toLowerCase());
 </script>
 
 <style lang="scss">
