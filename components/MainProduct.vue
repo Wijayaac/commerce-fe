@@ -10,7 +10,8 @@
       <p>Price : {{ product.price }}</p>
       <p>{{ product.description }}</p>
       <div class="main-product-cta">
-        <button @click="addToCart">Add to Cart</button>
+        <!-- <button @click="addToCart">Add to Cart</button> -->
+        <UiButton @click="addToCart">Add to Cart</UiButton>
       </div>
     </div>
   </div>
@@ -24,6 +25,7 @@ interface Product {
   // image_path?: string;
   price?: string;
 }
+
 const props = defineProps<{
   product: Product;
 }>();
@@ -37,20 +39,31 @@ const { data: user } = useAsyncData("user", async () => {
   return data;
 });
 
-const addToCart = () => {
-  console.log(user.value);
-  const { data: cart } = useAsyncData("cart", async () => {
-    const { data } = await client.from("carts").insert([
-      {
-        id: Math.floor(Math.random() * 10000),
-        user_id: user.value?.id,
-        product_id: props.product.id,
-        quantity: 1,
-        created_at: new Date(),
-      },
-    ]);
-    return data;
-  });
+interface Cart {
+  id: number;
+  user_id: number | undefined;
+  product_id: number | undefined;
+  quantity: number;
+  created_at: Date;
+}
+
+const addToCart = async () => {
+  const cartData: Cart = {
+    id: Math.floor(Math.random() * 10000),
+    user_id: user.value?.id,
+    product_id: props.product.id,
+    quantity: 1,
+    created_at: new Date(),
+  };
+
+  try {
+    const { data } = await client.from("carts").insert([cartData]);
+    console.log("Cart inserted:", data);
+    // Handle success, update UI, etc.
+  } catch (error) {
+    console.error("Error inserting cart:", error);
+    // Handle error, show error message, etc.
+  }
 };
 </script>
 

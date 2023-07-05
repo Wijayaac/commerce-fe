@@ -21,7 +21,7 @@ defineProps<{
     <p v-if="cart.products">Item : {{ cart.products.name }}</p>
     <p>Cart : {{ cart.id }}</p>
     <p v-if="cart.users">Cart : {{ cart.users.name }}</p>
-    <p>Cart : {{ cart.quantity }}</p>
+    <p>Quantity : {{ cart.quantity }}</p>
   </li>
 </template>
 
