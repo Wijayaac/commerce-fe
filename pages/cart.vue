@@ -10,7 +10,7 @@ const client = useSupabaseClient();
 const carts = ref([]);
 
 await useAsyncData("carts", async () => {
-  const response = await client.from("carts").select("*").eq("user_id", 1);
+  const response = await client.from("carts").select(`id, products (name), users (name), quantity`);
 
   if (response.error) {
     console.log(response.error);

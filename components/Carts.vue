@@ -8,8 +8,12 @@
 <script setup lang="ts">
 interface Cart {
   id: number;
-  user_id: number;
-  product_id: number;
+  users: {
+    name: string;
+  };
+  products: {
+    name: string;
+  };
   quantity: number;
 }
 

@@ -1,36 +1,16 @@
 <script setup lang="ts">
-interface User {
-  name: string;
-  // Add other properties of the User type here
-}
-
-interface Product {
-  name: string;
-  // Add other properties of the Product type here
-}
-
-const props = defineProps<{
+defineProps<{
   cart: {
     id: number;
-    user_id: number;
-    product_id: number;
+    products: {
+      name: string;
+    };
+    users: {
+      name: string;
+    };
     quantity: number;
   };
 }>();
-
-const product = ref({});
-const user = ref({});
-
-const client = useSupabaseClient();
-await useAsyncData("product", async () => {
-  const { data } = await client.from("products").select("*").eq("id", props.cart.product_id).single();
-  product.value = data || {};
-});
-
-await useAsyncData("user", async () => {
-  const { data } = await client.from("users").select("*").eq("id", props.cart.user_id).single();
-  user.value = data || {};
-});
 </script>
 
 <template>
@@ -38,9 +18,9 @@ await useAsyncData("user", async () => {
     <div class="card-image">
       <Image />
     </div>
-    <p v-if="product">Item : {{ (product as Product).name }}</p>
+    <p v-if="cart.products">Item : {{ cart.products.name }}</p>
     <p>Cart : {{ cart.id }}</p>
-    <p v-if="user">Cart : {{ (user as User).name }}</p>
+    <p v-if="cart.users">Cart : {{ cart.users.name }}</p>
     <p>Cart : {{ cart.quantity }}</p>
   </li>
 </template>
