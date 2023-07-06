@@ -1,7 +1,5 @@
 <template>
   <div>
-    <UiButton @click="handleClick"> Click Me! </UiButton>
-
     <Hero />
     <Products :products="products" />
   </div>

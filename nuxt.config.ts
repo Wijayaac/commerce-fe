@@ -1,6 +1,9 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  modules: ["@nuxtjs/supabase", "@nuxt/image"],
+  modules: ["@nuxtjs/supabase", "@nuxt/image", "@pinia/nuxt"],
+  imports: {
+    dirs: ["./stores"],
+  },
   devtools: { enabled: true },
 
   app: {
@@ -16,6 +19,7 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       apiBase: process.env.NUXT_PUBLIC_API_BASE,
+      suapabaseAPI: process.env.SUPABASE_URL,
     },
   },
 });

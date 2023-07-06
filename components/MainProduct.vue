@@ -31,6 +31,7 @@ const props = defineProps<{
 }>();
 
 const client = useSupabaseClient();
+const cart = useCartCounter();
 
 // GET current user and find the id
 // might using state management for this
@@ -59,6 +60,8 @@ const addToCart = async () => {
   try {
     const { data } = await client.from("carts").insert([cartData]);
     console.log("Cart inserted:", data);
+    cart.increment();
+
     // Handle success, update UI, etc.
   } catch (error) {
     console.error("Error inserting cart:", error);
