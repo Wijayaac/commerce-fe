@@ -2,7 +2,7 @@
   <div class="main-product row">
     <div class="col-12 col-md-6">
       <div class="main-product-image">
-        <Image />
+        <Image :url="product.image_url" />
       </div>
     </div>
     <div class="main-product-content col-12 col-md-6">
@@ -22,7 +22,7 @@ interface Product {
   name?: string;
   category_id?: number;
   description?: string;
-  // image_path?: string;
+  image_url?: string;
   price?: string;
 }
 

@@ -1,7 +1,7 @@
 import { acceptHMRUpdate, defineStore } from "pinia";
 
-const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS1kZW1vIiwicm9sZSI6ImFub24iLCJleHAiOjE5ODM4MTI5OTZ9.CRXP1A7WOeoJeXxjNni43kdQwgnWNReilDMblYTn_I0";
-const supabaseUrl = "http://localhost:54321";
+const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inl6am53ZmJpZ3l4aWVobWd0eWxkIiwicm9sZSI6ImFub24iLCJpYXQiOjE2ODg0Njk1MzksImV4cCI6MjAwNDA0NTUzOX0.BtAi7CpWyQk1GpiRAiFKGgk3DX04QntbzkjOvulJWms";
+const supabaseUrl = "https://yzjnwfbigyxiehmgtyld.supabase.co";
 
 export const useCartCounter = defineStore("cart", {
   state: () => ({
@@ -13,7 +13,12 @@ export const useCartCounter = defineStore("cart", {
     },
     async syncData() {
       try {
-        const data = await $fetch(`${supabaseUrl}/rest/v1/carts?select=id`);
+        const data = await $fetch(`${supabaseUrl}/rest/v1/carts?select=id`, {
+          headers: {
+            apiKey: supabaseKey,
+            Authorization: `Bearer ${supabaseKey}`,
+          },
+        });
         this.total = data.length;
       } catch (error) {
         console.error(error);

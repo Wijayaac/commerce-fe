@@ -3,7 +3,7 @@
     <div class="card card--product">
       <div class="card-image">
         <!-- todo add image later -->
-        <Image />
+        <Image :url="product?.image_url" />
       </div>
       <div class="card-content">
         <nuxt-link :to="'/product/' + product?.id" class="card-title">{{ product?.name }}</nuxt-link>
@@ -17,7 +17,7 @@ interface Product {
   id?: number;
   name?: string;
   category_id?: number;
-  // image_path?: string;
+  image_url?: string;
   price?: string;
 }
 
